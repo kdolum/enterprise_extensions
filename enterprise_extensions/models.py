@@ -1319,7 +1319,7 @@ def model_3a(psrs, psd='powerlaw', noisedict=None, white_vary=False,
              use_dmdata=False, select='backend',
              tnequad=False,
              pshift=False, pseed=None, psr_models=False,
-             tm_marg=False, dense_like=False, tm_svd=False):
+             tm_marg=False, dense_like=False, tm_svd=False, Tspan_factor=1):
     """
     Reads in list of enterprise Pulsar instance and returns a PTA
     instantiated with model 3A from the analysis paper:
@@ -1383,7 +1383,7 @@ def model_3a(psrs, psd='powerlaw', noisedict=None, white_vary=False,
     amp_prior = 'uniform' if upper_limit else 'log-uniform'
 
     # find the maximum time span to set GW frequency sampling
-    Tspan = model_utils.get_tspan(psrs)
+    Tspan = model_utils.get_tspan(psrs)*Tspan_factor
 
     if n_gwbfreqs is None:
         n_gwbfreqs = components
